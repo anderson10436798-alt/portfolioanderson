@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela de Preços Promocionais</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    caption {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 12px;
+      color: #2c3e50;
+      caption-side: top;
+      text-align: center;
+    }
+
+    thead {
+      background-color: #2c3e50;
+      color: #ffffff;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    /* Estilo para cabeçalhos de coluna */
+    thead th {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Estilo para cabeçalhos de linha */
+    tbody th {
+      background-color: #f8f9fa;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    /* Alternância de cores nas linhas (efeito zebra) */
+    tbody tr:nth-child(even) {
+      background-color: #f2f4f7;
+    }
+
+    /* Efeito de destaque ao passar o mouse */
+    tbody tr:hover {
+      background-color: #e2e8f0;
+    }
+
+    /* Borda sutil entre as células */
+    th, td {
+      border-bottom: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cardápio Semanal de Promoções</h1>
+
+  <table>
+    <caption>Tabela de Preços Promocionais da Lanchonete</caption>
+    <thead>
+      <tr>
+        <th scope="col">Lanche</th>
+        <th scope="col">Preço na Terça</th>
+        <th scope="col">Preço na Quinta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">X-Burguer</th>
+        <td>R$ 15,00</td>
+        <td>R$ 18,00</td>
+      </tr>
+      <tr>
+        <th scope="row">X-Salada</th>
+        <td>R$ 17,00</td>
+        <td>R$ 20,00</td>
+      </tr>
+      <tr>
+        <th scope="row">X-Bacon</th>
+        <td>R$ 20,00</td>
+        <td>R$ 23,00</td>
+      </tr>
+      <tr>
+        <th scope="row">X-Egg</th>
+        <td>R$ 18,00</td>
+        <td>R$ 21,00</td>
+      </tr>
+      <tr>
+        <th scope="row">X-Tudo</th>
+        <td>R$ 25,00</td>
+        <td>R$ 28,00</td>
+      </tr>
+      <tr>
+        <th scope="row">X-Frango</th>
+        <td>R$ 19,00</td>
+        <td>R$ 22,00</td>
+      </tr>
+      <tr>
+        <th scope="row">Porção de Batata</th>
+        <td>R$ 12,00</td>
+        <td>R$ 15,00</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
