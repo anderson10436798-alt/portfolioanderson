@@ -74,7 +74,64 @@
             </article>
         </section>
     </main>
+<!-- ... parte de cima do seu portfolio.html ... -->
 
+        <section class="projects-grid">
+            <!-- Seus projetos fixos que já estão lá -->
+            <article class="project-card">
+                ...
+            </article>
+        </section>
+
+        <!-- 1. ADICIONE ESTA LINHA AQUI (onde os projetos do Supabase vão aparecer): -->
+        <section id="projetos-supabase" class="projects-grid" style="margin-top: 24px;"></section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Anderson · Escola Estadual Dr. João Beraldo · Carlos Chagas - MG</p>
+        <div class="social-footer">
+            <a href="quemsoueu.html">Contato</a> |
+            <a href="portfolio.html">Portfólio</a>
+        </div>
+    </footer>
+
+    <!-- 2. COLE O SEU SCRIPT AQUI, LOGO ANTES DO </body>: -->
+    <script type="module">
+        import { listarProjetos } from "./supabase/projetos.js";
+
+        const container = document.getElementById("projetos-supabase");
+
+        async function renderizarProjetos() {
+            if (!container) return;
+
+            try {
+                const projetos = await listarProjetos();
+                container.innerHTML = "";
+
+                projetos.forEach((proj) => {
+                    const article = document.createElement("article");
+                    article.className = "project-card";
+                    article.innerHTML = `
+                        <img src="${proj.imagem}" alt="${proj.titulo}">
+                        <div class="card-content">
+                            <h2>${proj.titulo}</h2>
+                            <p>${proj.descricao}</p>
+                            <a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="btn-card">Abrir projeto</a>
+                        </div>
+                    `;
+                    container.appendChild(article);
+                });
+            } catch (erro) {
+                console.error(erro);
+            }
+        }
+
+        renderizarProjetos();
+    </script>
+
+</body>
+</html>
     <footer class="footer">
         <p>&copy; 2026 Anderson · Escola Estadual Dr. João Beraldo · Carlos Chagas - MG</p>
         <div class="social-footer">
