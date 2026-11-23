@@ -66,6 +66,31 @@
             <a href="portfolio.html">Portfólio</a>
         </div>
     </footer>
+<script type="module">
+    import { cadastrarProjeto } from "./supabase/projetos.js";
 
+    const form = document.getElementById("projeto-form");
+
+    if (form) {
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const novoProjeto = {
+                titulo: document.getElementById("titulo").value.trim(),
+                descricao: document.getElementById("descricao").value.trim(),
+                imagem: document.getElementById("imagem").value.trim(),
+                link: document.getElementById("link").value.trim()
+            };
+
+            try {
+                await cadastrarProjeto(novoProjeto);
+                alert("Projeto salvo com sucesso no Supabase!");
+                form.reset();
+            } catch (erro) {
+                alert(erro.message);
+            }
+        });
+    }
+</script>
 </body>
 </html>
