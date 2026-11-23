@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Tela de acesso restrito para o painel do portfólio.">
+    <title>Login | Área Restrita</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Anderson.dev</a>
+        </div>
+        <nav class="nav" aria-label="Menu principal">
+            <a href="index.html">Início</a>
+            <a href="quemsoueu.html">Quem sou eu</a>
+            <a href="portfolio.html">Portfólio</a>
+            <a href="login.html" class="lock-icon active" aria-label="Acesso restrito ao painel" title="Área Restrita">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+    <main class="container auth-container">
+        <section class="auth-box">
+            <h1>Login</h1>
+            <p>Acesse a área restrita para cadastrar projetos no dashboard.</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <p id="mensagem-erro" class="error-msg" aria-live="polite"></p>
+
+                <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Anderson · Escola Estadual Dr. João Beraldo · Carlos Chagas - MG</p>
+        <div class="social-footer">
+            <a href="quemsoueu.html">Contato</a> |
+            <a href="portfolio.html">Portfólio</a>
+        </div>
+    </footer>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
