@@ -1,115 +1,91 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio pessoal de Anderson, estudante do 2º ano EMTI na Escola Estadual Dr. João Beraldo em Carlos Chagas - MG.">
+    <title>Início | Anderson.dev</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary: #e05263;
+            --primary-hover: #c94152;
+        }
 
-<meta charset="UTF-8">
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 3px solid var(--primary);
+            display: block;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .hero .highlight {
+            color: var(--primary);
+        }
 
-<meta name="description" content="Portfólio pessoal de Anderson, estudante do 2º ano EMTI na Escola Estadual Dr. João Beraldo em Carlos Chagas - MG.">
+        .hero .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
 
-<title>Início | Anderson.dev</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+        .hero .btn-primary:hover {
+            background-color: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+    </style>
 </head>
-
 <body>
 
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">Anderson.dev</a>
+        </div>
+        <nav class="nav" aria-label="Menu principal">
+            <a href="index.html" class="active">Início</a>
+            <a href="quemsoueu.html">Quem sou eu</a>
+            <a href="portfolio.html">Portfólio</a>
+            <a href="contato.html">Contato</a>
+            <a href="login.html" class="lock-icon" aria-label="Acesso restrito ao painel" title="Área Restrita">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </a>
+        </nav>
+    </header>
 
+    <main class="container">
+        <section class="hero">
+            <img src="img/perfil.jpg" alt="Foto de perfil de Anderson, estudante do curso de informática" class="profile-avatar">
 
-<header class="header">
+            <h1>Olá, eu sou o <span class="highlight">Anderson</span></h1>
+            <p>Estudante do 2º ano EMTI na Escola Estadual Dr. João Beraldo, explorando desenvolvimento web e soluções para a minha cidade.</p>
 
-<div class="logo">
+            <div class="skills">
+                <span>HTML5 Semântico</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>SEO &amp; Semântica</span>
+                <span>Projetos Web</span>
+            </div>
 
-<a href="index.html">Anderson.dev</a>
+            <a href="portfolio.html" class="btn btn-primary">Ver meus projetos</a>
+        </section>
+    </main>
 
-</div>
-
-<nav class="nav" aria-label="Menu principal">
-
-<a href="index.html" class="active">Início</a>
-
-<a href="quemsoueu.html">Quem sou eu</a>
-
-<a href="portfolio.html">Portfólio</a>
-
-<a href="contato.html">Contato</a>
-
-<a href="login.html" class="lock-icon" aria-label="Acesso restrito ao painel" title="Área Restrita">
-
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-
-<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-
-</svg>
-
-</a>
-
-</nav>
-
-</header>
-
-
-
-<main class="container">
-
-<section class="hero">
-
-<img src="img/perfil.jpg" alt="Foto de perfil de Anderson, estudante do curso de informática" class="profile-avatar">
-
-
-
-<h1>Olá, eu sou o <span class="highlight">Anderson</span></h1>
-
-<p>Estudante do 2º ano EMTI na Escola Estadual Dr. João Beraldo, explorando desenvolvimento web e soluções para a minha cidade.</p>
-
-
-
-<div class="skills">
-
-<span>HTML5 Semântico</span>
-
-<span>CSS3</span>
-
-<span>JavaScript</span>
-
-<span>SEO &amp; Semântica</span>
-
-<span>Projetos Web</span>
-
-</div>
-
-
-
-<a href="portfolio.html" class="btn btn-primary">Ver meus projetos</a>
-
-</section>
-
-</main>
-
-
-
-<footer class="footer">
-
-<p>&copy; 2026 Anderson · Escola Estadual Dr. João Beraldo · Carlos Chagas - MG</p>
-
-<div class="social-footer">
-
-<a href="contato.html">Contato</a> |
-
-<a href="portfolio.html">Portfólio</a>
-
-</div>
-
-</footer>
-
-
+    <footer class="footer">
+        <p>&copy; 2026 Anderson · Escola Estadual Dr. João Beraldo · Carlos Chagas - MG</p>
+        <div class="social-footer">
+            <a href="contato.html">Contato</a> |
+            <a href="portfolio.html">Portfólio</a>
+        </div>
+    </footer>
 
 </body>
-
-</html> agora mude a cor dele deixe uma cor menos cansativa
+</html>
