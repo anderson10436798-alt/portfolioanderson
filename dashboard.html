@@ -19,7 +19,7 @@
             <a href="quemsoueu.html">Quem sou eu</a>
             <a href="portfolio.html">Portfólio</a>
             <a href="login.html" class="lock-icon" aria-label="Acesso restrito ao painel" title="Área Restrita">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -66,31 +66,37 @@
             <a href="portfolio.html">Portfólio</a>
         </div>
     </footer>
-<script type="module">
-    import { cadastrarProjeto } from "./supabase/projetos.js";
 
-    const form = document.getElementById("projeto-form");
+    <script type="module">
+        import { cadastrarProjeto } from "./supabase/projetos.js";
 
-    if (form) {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
+        if (sessionStorage.getItem("logado") !== "true") {
+            window.location.href = "login.html";
+        }
 
-            const novoProjeto = {
-                titulo: document.getElementById("titulo").value.trim(),
-                descricao: document.getElementById("descricao").value.trim(),
-                imagem: document.getElementById("imagem").value.trim(),
-                link: document.getElementById("link").value.trim()
-            };
+        const form = document.getElementById("projeto-form");
 
-            try {
-                await cadastrarProjeto(novoProjeto);
-                alert("Projeto salvo com sucesso no Supabase!");
-                form.reset();
-            } catch (erro) {
-                alert(erro.message);
-            }
-        });
-    }
-</script>
+        if (form) {
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const novoProjeto = {
+                    nome: document.getElementById("titulo").value.trim(),
+                    descricao: document.getElementById("descricao").value.trim(),
+                    imagem: document.getElementById("imagem").value.trim(),
+                    link: document.getElementById("link").value.trim()
+                };
+
+                try {
+                    await cadastrarProjeto(novoProjeto);
+                    alert("Projeto salvo com sucesso no Supabase!");
+                    form.reset();
+                } catch (erro) {
+                    alert(erro.message);
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
