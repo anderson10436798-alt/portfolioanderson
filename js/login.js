@@ -1,54 +1,46 @@
-
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
-import {
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-} from "../supabase/config.js";
-
-const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "../supabase/config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
     const form = document.getElementById("login-form");
     const mensagemErro = document.getElementById("mensagem-erro");
 
+    if (!form) return;
+
     form.addEventListener("submit", async (event) => {
-
         event.preventDefault();
+        mensagemErro.textContent = "";
 
-        const email = document.getElementById("usuario").value.trim();
-        const senha = document.getElementById("senha").value;
-
-        mensagemErro.textContent = "Verificando acesso...";
+        const emailDigitado = document.getElementById("usuario").value.trim();
+        const senhaDigitada = document.getElementById("senha").value;
 
         try {
+            const url = `${SUPABASE_URL}/rest/v1/usuarios?email=eq.${encodeURIComponent(emailDigitado)}&select=id,nome,email,senha`;
 
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: senha
+            const resposta = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "apikey": SUPABASE_ANON_KEY,
+                    "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                }
             });
 
-            if (error) {
-                throw error;
+            if (!resposta.ok) {
+                throw new Error("Erro ao consultar o banco de dados.");
             }
 
-            if (data.session) {
+            const usuarios = await resposta.json();
+            const usuarioEncontrado = usuarios[0];
+
+            if (usuarioEncontrado && usuarioEncontrado.senha === senhaDigitada) {
+                sessionStorage.setItem("logado", "true");
+                sessionStorage.setItem("usuarioNome", usuarioEncontrado.nome);
                 window.location.href = "dashboard.html";
+            } else {
+                mensagemErro.textContent = "E-mail ou senha incorretos. Verifique seus dados.";
             }
-
-        } catch (error) {
-
-            console.error("Erro no login:", error);
-
-            mensagemErro.textContent =
-                "E-mail ou senha incorretos. Verifique seus dados.";
-
+        } catch (erro) {
+            console.error(erro);
+            mensagemErro.textContent = "Não foi possível validar o login agora.";
         }
-
     });
-
 });
