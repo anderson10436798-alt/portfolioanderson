@@ -8,13 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        mensagemErro.textContent = "";
+        mensagemErro.textContent = "A verificar dados...";
 
-        const emailDigitado = document.getElementById("usuario").value.trim();
+        const emailDigitado = document.getElementById("usuario").value.trim().toLowerCase();
         const senhaDigitada = document.getElementById("senha").value;
 
         try {
-            const url = `${SUPABASE_URL}/rest/v1/usuarios?email=eq.${encodeURIComponent(emailDigitado)}&select=id,nome,email,senha`;
+            // Busca todos os registos da tabela usuarios para evitar falhas de filtro na URL
+            const url = `${SUPABASE_URL}/rest/v1/usuarios?select=*`;
 
             const resposta = await fetch(url, {
                 method: "GET",
@@ -25,22 +26,35 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!resposta.ok) {
-                throw new Error("Erro ao consultar o banco de dados.");
+                mensagemErro.textContent = `Erro Supabase (${resposta.status}): verifica o supabase/config.js`;
+                return;
             }
 
             const usuarios = await resposta.json();
-            const usuarioEncontrado = usuarios[0];
 
-            if (usuarioEncontrado && usuarioEncontrado.senha === senhaDigitada) {
+            if (!usuarios || usuarios.length === 0) {
+                mensagemErro.textContent = "A tabela 'usuarios' retornou vazia.";
+                return;
+            }
+
+            const usuarioEncontrado = usuarios.find(
+                (u) => u.email && u.email.trim().toLowerCase() === emailDigitado
+            );
+
+            if (!usuarioEncontrado) {
+                mensagemErro.textContent = `E-mail não encontrado. No banco existe: ${usuarios[0].email}`;
+                return;
+            }
+
+            if (usuarioEncontrado.senha === senhaDigitada) {
                 sessionStorage.setItem("logado", "true");
-                sessionStorage.setItem("usuarioNome", usuarioEncontrado.nome);
+                sessionStorage.setItem("usuarioNome", usuarioEncontrado.nome || "Anderson");
                 window.location.href = "dashboard.html";
             } else {
-                mensagemErro.textContent = "E-mail ou senha incorretos. Verifique seus dados.";
+                mensagemErro.textContent = "Senha incorreta! Verifica se escreveste exatamente como está na tabela.";
             }
         } catch (erro) {
-            console.error(erro);
-            mensagemErro.textContent = "Não foi possível validar o login agora.";
+            mensagemErro.textContent = `Falha de ligação: ${erro.message}`;
         }
     });
 });
