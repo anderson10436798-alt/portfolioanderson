@@ -451,3 +451,14 @@ main {
         padding-top: 140px;
     }
 }
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid var(--primary, #ff2e55);
+    display: block;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
