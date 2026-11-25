@@ -12,7 +12,7 @@ function getHeaders() {
 }
 
 export async function listarProjetos() {
-    const resposta = await fetch(`${ENDPOINT_REST}?select=*&order=id.desc`, {
+    const resposta = await fetch(`${ENDPOINT_REST}?select=*&order=criado_em.desc`, {
         method: "GET",
         headers: getHeaders()
     });
