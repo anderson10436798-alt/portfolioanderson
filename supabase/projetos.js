@@ -11,7 +11,6 @@ function getHeaders() {
     };
 }
 
-// Busca todos os projetos cadastrados no Supabase
 export async function listarProjetos() {
     const resposta = await fetch(`${ENDPOINT_REST}?select=*&order=id.desc`, {
         method: "GET",
@@ -19,13 +18,13 @@ export async function listarProjetos() {
     });
 
     if (!resposta.ok) {
-        throw new Error("Não foi possível carregar os projetos do Supabase.");
+        const detalhe = await resposta.text();
+        throw new Error(`Erro ao listar (${resposta.status}): ${detalhe}`);
     }
 
     return await resposta.json();
 }
 
-// Insere um novo projeto vindo do formulário do dashboard.html
 export async function cadastrarProjeto(projeto) {
     const resposta = await fetch(ENDPOINT_REST, {
         method: "POST",
@@ -37,7 +36,8 @@ export async function cadastrarProjeto(projeto) {
     });
 
     if (!resposta.ok) {
-        throw new Error("Não foi possível salvar o projeto no Supabase.");
+        const detalhe = await resposta.text();
+        throw new Error(`Erro Supabase (${resposta.status}): ${detalhe}`);
     }
 
     return await resposta.json();
