@@ -1,4 +1,7 @@
-
+:root {
+    --primary: #e05263;
+    --primary-hover: #c94152;
+}
 :root {
     --bg-main: #121214;
     --bg-card: #1f1f23;
